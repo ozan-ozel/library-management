@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, ManyToOne, Column } from "typeorm";
 import { User } from "./user";
 import { Book } from "./book";
+import { UserBookStatus } from "../enums/userBookStatus";
 
 @Entity()
 export class UserBook {
@@ -13,8 +14,8 @@ export class UserBook {
   @ManyToOne(() => Book, (book) => book.userBooks, { eager: true, onDelete: "CASCADE" })
   book: Book;
 
-  @Column({ type: "varchar", length: 50 })
-  status: string;  // e.g., "borrowed", "returned", "lost"
+  @Column({ type: 'enum', enum: UserBookStatus, default: UserBookStatus.BORROWED })
+  status: UserBookStatus;
 
   @Column({ type: "timestamp", nullable: true })
   borrowDate: Date;
@@ -23,9 +24,9 @@ export class UserBook {
   returnDate: Date | null;
 
   @Column({ type: "int", nullable: true })
-  rating: number | null;  // User's rating for the book
+  rating: number | null;
 
-  constructor(user: User, book: Book, status: string, borrowDate: Date, returnDate?: Date, rating?: number) {
+  constructor(user: User, book: Book, status: UserBookStatus, borrowDate: Date, returnDate?: Date, rating?: number) {
     this.user = user;
     this.book = book;
     this.status = status;

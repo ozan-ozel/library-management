@@ -13,6 +13,6 @@
     "experimentalDecorators": true,     // Required for TypeORM decorators
     "emitDecoratorMetadata": true       // Required for TypeORM decorators
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*.ts"],
   "exclude": ["dist", "node_modules"]
 }

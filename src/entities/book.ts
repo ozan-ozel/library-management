@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, Unique } from "typeorm";
 import { IsString, Length, Min } from "class-validator";
 import { UserBook } from "./userBook";
 
@@ -8,6 +8,7 @@ export class Book {
   id!: number;
 
   @Column({ type: "varchar", length: 255 })
+  @Unique(["name"])
   @IsString()
   @Length(50, 255)  // MIN: 50, MAX: 255 characters
   name: string;
@@ -27,7 +28,7 @@ export class Book {
   // Relation to UserBook
   @OneToMany(() => UserBook, (userBook) => userBook.book)
   userBooks?: UserBook[];
-
+  
   constructor(name: string, averageRating: number = 0, borrowCount: number = 0, totalRating: number = 0) {
     this.name = name;
     this.averageRating = averageRating;
