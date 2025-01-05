@@ -7,7 +7,6 @@
     "build": "tsc",
     "start-infra": "docker compose --env-file .env up -d",
     "dev": "npx tsx watch --clear-screen=false src/index.ts",
-    "generate:migration": "npx ts-node src/generate-migration.ts",
     "migration:generate": "npx ts-node ./node_modules/typeorm/cli.js migration:generate -d ./src/datasource.config.ts",
     "migration:up": "npx ts-node ./node_modules/typeorm/cli.js migration:run -d ./src/datasource.config.ts",
     "migration:down": "npx ts-node ./node_modules/typeorm/cli.js migration:revert -d ./src/datasource.config.ts",
