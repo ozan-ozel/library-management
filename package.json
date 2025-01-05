@@ -9,8 +9,8 @@
     "dev": "npx tsx watch --clear-screen=false src/index.ts",
     "generate:migration": "npx ts-node src/generate-migration.ts",
     "migration:generate": "npx ts-node ./node_modules/typeorm/cli.js migration:generate -d ./src/datasource.config.ts",
-    "migration:up": "ts-node -r tsconfig-paths/register --project ./tsconfig.json ./node_modules/.bin/typeorm migration:create -d config/migration.config.ts",
-    "migration:down": "ts-node -r tsconfig-paths/register --project ./tsconfig.json ./node_modules/.bin/typeorm migration:revert -d config/migration.config.ts",
+    "migration:up": "npx ts-node ./node_modules/typeorm/cli.js migration:run -d ./src/datasource.config.ts",
+    "migration:down": "npx ts-node ./node_modules/typeorm/cli.js migration:revert -d ./src/datasource.config.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -27,8 +27,10 @@
     "express": "^4.21.2",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
+    "joi": "^17.13.3",
     "morgan": "~1.9.1",
     "pg": "^8.13.1",
+    "redis": "^4.7.0",
     "tsconfig-paths": "^4.2.0",
     "typeorm": "^0.3.20",
     "typeorm-extension": "^3.6.3"
