@@ -1,0 +1,5 @@
+- To run the code, first make sure that environment variables are correctly set. Example env file should be copied and renamed as .env.
+- Run "docker compose up -d" to run the redis client, redis connection string should be moved to env file as an improvement.
+- Run "npm run migration:up" to run the migrations.
+- Run "npm run dev"
+- To generate a new migration, use "npm run migration:generate <migration_destination>".
