@@ -11,8 +11,17 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-
+      - /home/${POSTGRES_USER}/volumes/postgres/data:/var/lib/postgresql/data
+      - /home/${POSTGRES_USER}/volumes/postgres/config:/etc/postgresql
+  postgres_setup:
+    image: postgres:15.1
+    user: root
+    volumes:
+      - /home/${POSTGRES_USER}/volumes/postgres/data:/var/lib/postgresql/data
+      - /home/${POSTGRES_USER}/volumes/postgres/config:/etc/postgresql
+    entrypoint: [ "bash", "-c", "chmod 750 -R /var/lib/postgresql/data && chmod 750 -R /etc/postgresql"] 
+    depends_on:
+        - postgres
   redis:
     image: redis:7
     container_name: redis_container

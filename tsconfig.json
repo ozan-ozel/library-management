@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",                // For latest ES syntax support
+    "module": "CommonJS",                 // Enables native ES modules
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true,            // Allows default imports for CommonJS modules
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,     // Required for TypeORM decorators
+    "emitDecoratorMetadata": true       // Required for TypeORM decorators
+  },
+  "include": ["src/**/*"],
+  "exclude": ["dist", "node_modules"]
+}
